@@ -1,0 +1,20 @@
+#include <stdio.h>
+int power(int number, int power)
+{
+  long result = 1;
+  for(long i = 0; i < power; i++) 
+  {
+   result *= number;
+  }
+  return result;
+}
+int main()
+{
+ int n;
+ int m;
+ printf("Число: ");
+ scanf("%d", &n);
+ printf("Степень: ");
+ scanf("%d", &m);
+ printf ("%d^%d=%d \n", n,m, power (n,m));
+}
