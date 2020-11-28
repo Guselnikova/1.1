@@ -1,20 +1,30 @@
 #include <stdio.h>
-int power(int number, int power)
+
+int get_power(int number, int power)
 {
-  long result = 1;
-  for(long i = 0; i < power; i++) 
-  {
-   result *= number;
-  }
-  return result;
+    int res = 1;
+    
+    for(int i = 1; i <= power; i++) 
+    {
+        res = res * number;
+       
+        printf("%d\n", res);
+    }
+    return res;
 }
-int main()
+
+int main() 
 {
- int n;
- int m;
- printf("Число: ");
- scanf("%d", &n);
- printf("Степень: ");
- scanf("%d", &m);
- printf ("%d^%d=%d \n", n,m, power (n,m));
+    int n, p;
+    
+    printf("Введите число: ");
+    scanf("%d",&n);
+    
+    printf("Введите степень: ");
+    scanf("%d",&p);
+    
+    printf("Результат = %d\n", get_power(n, p));
+    
+    return 0;
 }
+
