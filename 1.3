@@ -3,26 +3,22 @@
 int get_power(int number, int power)
 {
     int res = 1;
-    
     for(int i = 1; i <= power; i++) 
     {
         res = res * number;
-       
         printf("%d\n", res);
     }
+    
     return res;
 }
 
 int main() 
 {
     int n, p;
-    
     printf("Введите число: ");
     scanf("%d",&n);
-    
     printf("Введите степень: ");
     scanf("%d",&p);
-    
     printf("Результат = %d\n", get_power(n, p));
     
     return 0;
