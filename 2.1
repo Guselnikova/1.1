@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+long long get_fibonachi_with_cycle(int number)
+{
+    long long fib_sum = 0;
+    long long fib1 = 1, fib2 = 1;
+    for (int i = 0; i < number - 2; i++)
+    {
+        fib_sum = fib1 + fib2;
+        fib1 = fib2;
+        fib2 = fib_sum;
+    }
+    return fib_sum;
+}
+
+long long get_fibonachi_with_recursion(int number)
+{
+    if (number == 1 || number == 2)
+        return 1;
+    return get_fibonachi_with_recursion(number - 1) + \
+    get_fibonachi_with_recursion(number - 2);
+}
+
+int main(int argc, const char * argv[]) {
+    long long num;
+    printf("Введите число: ");
+    scanf("%lld", &num);
+    printf("Циклом: %lld\n", get_fibonachi_with_cycle(num));
+    printf("Рекурсией: %lld\n", get_fibonachi_with_recursion(num));
+    return 0;
+}
