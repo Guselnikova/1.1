@@ -1,0 +1,98 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void reverse(char *str)
+{
+    int len = (int)strlen(str);
+    int i;
+    for (i = 0; i < len/2; i++)
+    {
+        char temp = str[i];
+        str[i] = str[len-i-1];
+        str[len-i-1] = temp;
+    }
+}
+
+void int_to_str(int number, char *string)
+{
+    sprintf(string, "%d", number);
+}
+
+int any_to_dec(char *number, int base)
+{
+    int sum = 0;
+    int n = (int)strlen(number) - 1;
+    
+    for (int i = 0; i < strlen(number); i++)
+    {
+        sum += (number[i] - '0') * pow(base, n);
+        n--;
+    }
+    return sum;
+}
+
+char find_number(int num)
+{
+    if (num >= 0 && num <= 9)
+        return (char)(num + '0');
+    else
+        return (char)(num - 10 + 'A');
+}
+
+void from_dec_to_any(char *result, int number, int base)
+{
+    int index = 0;
+    
+    while (number > 0)
+    {
+        result[index++] = find_number(number % base);
+        number /= base;
+    }
+    
+    result[index] = '\0';
+    
+    reverse(result);
+}
+
+/*
+ number - исходное  число
+ source - исходная сс < 11
+ target - сс надо перевести < 32
+ */
+void power(int number, int source, int target)
+{
+    char string[256];
+    int_to_str(number, string);
+    
+    int dec_number = any_to_dec(string, source);
+    
+    char result[256];
+    from_dec_to_any(result, dec_number, target);
+    printf("Число в нужной сс: %s\n", result);
+}
+
+int main()
+{
+    int number;
+    printf("Введите число: ");
+    scanf("%d", &number);
+    
+    int base_from;
+    printf("Введите из какой сс: ");
+    scanf("%d", &base_from);
+    
+    if (base_from > 11)
+        return -1;
+    
+    int base_to;
+    printf("Введите в какую сс: ");
+    scanf("%d", &base_to);
+    
+    if (base_to > 32)
+        return -1;
+    
+    power(number, base_from, base_to);
+
+    return 0;
+}
